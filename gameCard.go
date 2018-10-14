@@ -97,19 +97,19 @@ func MakeConfiguredDeck(config DeckConfig, name string) Deck {
 		var randomCardSelector = rand.Intn(3)
 		switch randomCardSelector {
 		case 0:
-			// if (scoreCardsAdded < config.NumScoreCards) || config.NumScoreCards == 0 {
-			newDeck.Cards[i] = availableCards[randomCardSelector]
-			scoreCardsAdded++
-			// }
+			if (scoreCardsAdded < config.NumScoreCards) || config.NumScoreCards == 0 {
+				newDeck.Cards[i] = availableCards[randomCardSelector]
+				scoreCardsAdded++
+			}
 		case 1:
-			if nerfCardsAdded < config.NumNerfCards {
+			if (nerfCardsAdded < config.NumNerfCards) || config.NumNerfCards == 0 {
 				newDeck.Cards[i] = availableCards[randomCardSelector]
 				nerfCardsAdded++
 			} else {
 				newDeck.Cards[i] = availableCards[0]
 			}
 		case 2:
-			if buffCardsAdded < config.NumBuffCards {
+			if (buffCardsAdded < config.NumBuffCards) || config.NumBuffCards == 0 {
 				newDeck.Cards[i] = availableCards[randomCardSelector]
 				buffCardsAdded++
 			} else {
